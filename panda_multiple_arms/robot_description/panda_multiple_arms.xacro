@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot name="panda_multiple_arms" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- add arms names prefixes -->
+    <xacro:arg name="arm_id_1" default="right_arm" />
+    <xacro:arg name="arm_id_2" default="left_arm" />
+
+    <!-- load arm/hand models and utils (which adds the robot inertia tags to be Gazebo-simulation ready) -->
+    <xacro:include filename="$(find franka_description)/robots/common/utils.xacro" />
+    <xacro:include filename="$(find franka_description)/robots/common/franka_arm.xacro" />
+    <xacro:include filename="$(find franka_description)/robots/common/franka_hand.xacro" />
+    <!--<xacro:include filename="$(find franka_description)/robots/common/camera.xacro" />-->
+    
+    <link name="world"/>
+
+  
+    <!-- right arm with gripper -->
+    <xacro:franka_arm arm_id="$(arg arm_id_1)" connected_to="world" xyz="0 -1.0 0" gazebo="true" safety_distance="0.03" joint_limits="${xacro.load_yaml('$(find franka_description)/robots/panda/joint_limits.yaml')}"/>
+    <xacro:franka_hand arm_id="$(arg arm_id_1)" rpy="0 0 ${-pi/4}" connected_to="$(arg arm_id_1)_link8" gazebo="true" safety_distance="0.03" />
+
+    <!-- left arm with gripper -->
+    <xacro:franka_arm arm_id="$(arg arm_id_2)" connected_to="world" xyz="0 0 0" gazebo="true" safety_distance="0.03" joint_limits="${xacro.load_yaml('$(find franka_description)/robots/panda/joint_limits.yaml')}"/>
+    <xacro:franka_hand arm_id="$(arg arm_id_2)" rpy="0 0 ${-pi/4}" connected_to="$(arg arm_id_2)_link8" gazebo="true" safety_distance="0.03" />
+
+    <!-- right arm joints control interface -->
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint1" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint2" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint3" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint4" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint5" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint6" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_joint7" transmission="hardware_interface/PositionJointInterface" />
+
+    <!-- left arm joints control interface -->
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint1" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint2" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint3" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint4" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint5" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint6" transmission="hardware_interface/PositionJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_joint7" transmission="hardware_interface/PositionJointInterface" />
+
+    <!-- right hand joints control interface -->
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_finger_joint1" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_1)_finger_joint2" transmission="hardware_interface/EffortJointInterface" />
+
+    <!-- left hand joints control interface -->
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_finger_joint1" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="$(arg arm_id_2)_finger_joint2" transmission="hardware_interface/EffortJointInterface" />
+
+    <!-- load ros_control plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+    </gazebo>
+
+</robot>

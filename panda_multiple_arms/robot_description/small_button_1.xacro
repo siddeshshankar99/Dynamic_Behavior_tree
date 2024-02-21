@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Macro for the small box link -->
+  <xacro:macro name="small_box_link" params="size_x size_y size_z x y z">
+
+    <!-- Define the link -->
+    <link name="small_box_link">
+      <!-- Define the visual and collision elements -->
+      <visual>
+        <origin rpy="0 0 0" xyz="${x} ${y} ${z}" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="${x} ${y} ${z}" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Define the joint -->
+    <joint name="small_box_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="${x} ${y} ${z}" />
+      <parent link="parent_link" />
+      <child link="small_box_link" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>
