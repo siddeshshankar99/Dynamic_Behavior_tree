@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- To initiate all the action and condition nodes of the left_arm -->
+  <node name="button1_condition_R" pkg="panda_multiple_arms" type="button1_condition_R.py" output="screen" />
+  <node name="button1_in_goal_condition_R" pkg="panda_multiple_arms" type="button1_in_goal_R.py" output="screen" />
+  <node name="button1_not_condition_R" pkg="panda_multiple_arms" type="button1_not_condition_R.py" output="screen" />
+  <node name="button2_condition_R" pkg="panda_multiple_arms" type="button2_condition_R.py" output="screen" />
+  <node name="button2_in_goal_condition_R" pkg="panda_multiple_arms" type="button2_in_goal_R.py" output="screen" />
+  <node name="button2_not_condition_R" pkg="panda_multiple_arms" type="button2_not_condition_R.py" output="screen" />
+  <node name="button3_condition_R" pkg="panda_multiple_arms" type="button3_condition_R.py" output="screen" />
+  <node name="button3_in_goal_condition_R" pkg="panda_multiple_arms" type="button3_in_goal_R.py" output="screen" />
+  <node name="button3_not_condition_R" pkg="panda_multiple_arms" type="button3_not_condition_R.py" output="screen" />
+  <node name="Back_to_home_R" pkg="panda_multiple_arms" type="Back_to_home_R.py" output="screen" />
+  <node name="goal1_obstruct" pkg="panda_multiple_arms" type="goal1_free.py" output="screen" />
+  <node name="goal2_obstruct" pkg="panda_multiple_arms" type="goal2_free.py" output="screen" />
+  <node name="goal3_obstruct" pkg="panda_multiple_arms" type="goal3_free.py" output="screen" />
+  <node name="Pick1_R" pkg="panda_multiple_arms" type="Pick1_R.py" output="screen" />
+  <node name="Pick2_R" pkg="panda_multiple_arms" type="Pick2_R.py" output="screen" />
+  <node name="Pick3_R" pkg="panda_multiple_arms" type="Pick3_R.py" output="screen" />
+  <node name="Place1_R" pkg="panda_multiple_arms" type="Place1_R.py" output="screen" />
+  <node name="Place2_R" pkg="panda_multiple_arms" type="Place2_R.py" output="screen" />
+  <node name="Place3_R" pkg="panda_multiple_arms" type="Place3_R.py" output="screen" />
+  
+</launch>

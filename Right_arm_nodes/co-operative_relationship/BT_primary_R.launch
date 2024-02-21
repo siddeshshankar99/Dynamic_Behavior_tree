@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- To initiate all the action and condition nodes of the left_arm -->
+  <node name="Solder_1" pkg="panda_multiple_arms" type="Soldering_1.py" output="screen" />
+  <node name="Solder_2" pkg="panda_multiple_arms" type="Soldering_2.py" output="screen" />
+  <node name="Solder_3" pkg="panda_multiple_arms" type="Soldering_3.py" output="screen" />
+  <node name="Solder_4" pkg="panda_multiple_arms" type="Soldering_4.py" output="screen" />
+  <node name="Solder_cond" pkg="panda_multiple_arms" type="Soldering_cond.py" output="screen" />
+  
+</launch>
